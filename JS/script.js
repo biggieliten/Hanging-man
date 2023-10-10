@@ -36,4 +36,8 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
 
 // outputLines(randomWordChosenArray);
 let paragraph = document.querySelector(`#outputLines`);
-paragraph.innerHTML = `${randomWordChosenArray[i]}`;
+paragraph.innerHTML = `${randomWordChosenArray}`;
+
+//get the length of the word from using sting.length
+// compare string.length to length of the word
+// print out _ form the value from string.length
