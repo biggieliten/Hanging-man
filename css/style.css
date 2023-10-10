@@ -1,5 +1,38 @@
 main {
+  min-height: 80vh;
+  padding: 2rem;
   display: grid;
-  grid-template-columns: repeat(6 1fr);
-  background-color: bisque;
+  grid-auto-columns: 1fr;
+  grid-row: 1fr, 3fr 1fr;
+  gap: 1rem;
+  grid-template-areas:
+    "timer svg svg"
+    "wrongLetterLog svg svg"
+    "inputLetter mainOutputContainer mainOutputContainer";
+}
+
+.timer {
+  background-color: red;
+  grid-area: timer;
+}
+
+.svg__container {
+  background-color: antiquewhite;
+  grid-area: svg;
+}
+
+.wrongLetterLog {
+  background-color: rgb(219, 211, 211);
+  grid-area: wrongLetterLog;
+}
+
+.inputLetter {
+  border: 3px solid black;
+  grid-area: inputLetter;
+}
+
+.mainOutputContainer {
+  padding: 1rem;
+  background-color: pink;
+  grid-area: mainOutputContainer;
 }
