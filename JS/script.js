@@ -1,5 +1,28 @@
 /////////////////////Luka Random Generator ///////////////////////////////
-let randomWord = ["apple", "banana", "cherry", "grape", "orange", "pear"];
+let randomWord = [
+  "apple",
+  "banana",
+  "cherry",
+  "grape",
+  "orange",
+  "pear",
+  "pineapple",
+  "strawberry",
+  "watermelon",
+  "kiwi",
+  "dog",
+  "cat",
+  "elephant",
+  "orca",
+  "leon",
+  "syntax",
+  "javascript",
+  "html",
+  "css",
+  "python",
+  "java",
+  "werewolf",
+];
 
 function randomWordGenerator(randomWord) {
   return randomWord[Math.floor(Math.random() * randomWord.length)];
@@ -8,7 +31,7 @@ const randomWordChosen = randomWordGenerator(randomWord);
 console.log(randomWordChosen);
 const randomWordChosenArray = randomWordChosen.split(``);
 console.log(randomWordChosenArray);
-///////////////////////////check letter Luka////////////////////////////////
+///////////////////////////check letter Luka and output letter ////////////////////////////////
 let inputLetter = document.querySelector(`#letter1`);
 let inputWord = document.querySelector(`#letter1`);
 let result = document.querySelector(`#result`);
@@ -21,22 +44,16 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
     for (let i = 0; i < randomWordChosenArray.length; i++) {
       if (letter === randomWordChosenArray[i]) {
         console.log("Correct!");
+        rightLetter.innerHTML += randomWordChosenArray[i];
       }
       console.log(randomWordChosenArray[i]);
     }
   } else {
     console.log("Incorrect!");
+    wrongLetter.innerHTML += letter;
   }
 });
 /////////////////////////output lines with amount of letters Luka //////////////////
-
-// function outputLines(randomWordChosenArray) {
-//   for (let i = 0; i < randomWordChosenArray.length; i++) {
-//     result.innerHTML += randomWordChosenArray[i] + `-`;
-//   }
-// }
-
-// outputLines(randomWordChosenArray);
 let hiddenWord = Array(randomWordChosenArray.length).fill(`_`);
 let paragraph = document.querySelector(`#outputLines`);
 paragraph.innerHTML = `${hiddenWord}`;
