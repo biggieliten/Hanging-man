@@ -12,6 +12,8 @@ console.log(randomWordChosenArray);
 let inputLetter = document.querySelector(`#letter1`);
 let inputWord = document.querySelector(`#letter1`);
 let result = document.querySelector(`#result`);
+let rightLetter = document.querySelector(`#rightLetter`);
+let wrongLetter = document.querySelector(`#letterLog`);
 
 inputLetter.addEventListener(`input`, (checkLetter) => {
   let letter = checkLetter.target.value.toLowerCase();
@@ -35,8 +37,9 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
 // }
 
 // outputLines(randomWordChosenArray);
+let hiddenWord = Array(randomWordChosenArray.length).fill(`_`);
 let paragraph = document.querySelector(`#outputLines`);
-paragraph.innerHTML = `${randomWordChosenArray}`;
+paragraph.innerHTML = `${hiddenWord}`;
 
 //get the length of the word from using sting.length
 // compare string.length to length of the word
