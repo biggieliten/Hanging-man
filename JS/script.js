@@ -1,6 +1,6 @@
 const startingTime = 5;
 let totalTime = startingTime * 60;
-let countdown = document.getElementById("time");
+let countdown = document.getElementById("timer");
 
 const timer = setInterval(function () {
   minutes = Math.floor(totalTime / 60);
