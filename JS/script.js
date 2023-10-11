@@ -66,7 +66,7 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
     for (let i = 0; i < randomWordChosenArray.length; i++) {
       if (letter === randomWordChosenArray[i]) {
         console.log("Correct!");
-        rightLetter.innerHTML += randomWordChosenArray[i];
+        rightLetter.innerHTML += [i, letter];
       }
       console.log(randomWordChosenArray[i]);
     }
