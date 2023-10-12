@@ -59,8 +59,27 @@ let rightLetterArray = [];
 let inputLetter = document.querySelector(`#letter1`);
 let inputWord = document.querySelector(`#letter1`);
 let result = document.querySelector(`#result`);
-let rightLetter = document.querySelector(`#rightLetter`);
+// let rightLetter = document.querySelector(`#rightLetter`);
 let wrongLetter = document.querySelector(`#letterLog`);
+let hiddenWord = Array(randomWordChosenArray.length).fill(`_`);
+let paragraph = document.querySelector(`#outputLines`);
+paragraph.innerHTML = `${hiddenWord}`;
+function gameOver() {
+  if (wrongLetterArray.length > 6) {
+    alert(
+      `Game Over! ${randomWordChosen}` + " Press OK if you want to play again"
+    );
+    location.reload();
+  }
+}
+function youWon() {
+  if (rightLetterArray.length === randomWordChosenArray.length) {
+    alert("WOW You Won " + " Press OK if you want to play again");
+    location.reload();
+  } else {
+    return;
+  }
+}
 
 inputLetter.addEventListener(`input`, (checkLetter) => {
   let letter = checkLetter.target.value.toLowerCase();
@@ -68,9 +87,12 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
     for (let i = 0; i < randomWordChosenArray.length; i++) {
       if (letter === randomWordChosenArray[i]) {
         console.log("Correct!");
-        rightLetter.innerHTML += [i, letter, `-`];
-        rightLetterArray.push(letter);
-        console.log(rightLetterArray);
+        hiddenWord[i] = letter; // Replace the underscore with the correct letter
+        paragraph.innerHTML = hiddenWord.join(" ");
+        youWon();
+        // rightLetter.innerHTML += [i, letter, `-`];
+        // rightLetterArray.push(letter);
+        // console.log(rightLetterArray);
       }
       console.log(randomWordChosenArray[i]);
     }
@@ -81,13 +103,11 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
     svgParts[index].style.display = "block";
     wrongLetterArray.push(letter);
     console.log(wrongLetterArray);
+    gameOver();
   }
   inputLetter.value = "";
 });
 /////////////////////////output lines with amount of letters Luka //////////////////
-let hiddenWord = Array(randomWordChosenArray.length).fill(`_`);
-let paragraph = document.querySelector(`#outputLines`);
-paragraph.innerHTML = `${hiddenWord}`;
 
 //get the length of the word from using sting.length
 // compare string.length to length of the word
@@ -102,8 +122,17 @@ let svgArms = document.getElementById("arms");
 let svgLegs = document.getElementById("legs");
 let svgScaffold = document.getElementById("scaffold");
 let btn = document.querySelector("button");
+let gameOverSvg = document.querySelector(`#Layer_1`);
 
-let svgParts = [svgGround, svgHead, svgScaffold, svgLegs, svgArms, svgBody];
+let svgParts = [
+  svgGround,
+  svgHead,
+  svgScaffold,
+  svgLegs,
+  svgArms,
+  svgBody,
+  gameOverSvg,
+];
 
 let index = -1;
 
@@ -112,14 +141,6 @@ svgParts.forEach((part, i) => {
     part.style.display = "none";
   }
 });
-
-function gameOver() {
-  if (wrongLetterArray > 5) {
-    alert("Game Over!");
-    // location.reload();
-  }
-  gameOver();
-}
 
 // inputLetter.addEventListener("input", () => {
 //   index = index + 1;
