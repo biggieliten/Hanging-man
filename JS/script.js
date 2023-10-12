@@ -83,3 +83,29 @@ paragraph.innerHTML = `${hiddenWord}`;
 //get the length of the word from using sting.length
 // compare string.length to length of the word
 // print out _ form the value from string.length
+
+// BONNIE
+
+
+let svgGround = document.getElementById("ground");
+let svgGhead = document.getElementById("head");
+let svgBody = document.getElementById("body");
+let svgArms = document.getElementById("arms");
+let svgLegs = document.getElementById("legs");
+let svgScaffold = document.getElementById("scaffold");
+let btn = document.querySelector("button");
+
+let svgParts = [svgGround, svgGhead, svgScaffold, svgLegs, svgArms, svgBody]; 
+
+let index = -1;
+
+svgParts.forEach((part, i) => {
+ if (i !== index) {
+   part.style.display = "none";
+ }
+});
+
+btn.addEventListener("click", () => {
+index = (index + 1); 
+svgParts[index].style.display = "block";
+})
