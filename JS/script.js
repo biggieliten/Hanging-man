@@ -52,8 +52,12 @@ function randomWordGenerator(randomWord) {
 const randomWordChosen = randomWordGenerator(randomWord);
 console.log(randomWordChosen);
 const randomWordChosenArray = randomWordChosen.split(``);
+
 console.log(randomWordChosenArray);
 ///////////////////////////check letter Luka and output letter ////////////////////////////////
+
+let wrongLetterArray = [];
+
 let inputLetter = document.querySelector(`#letter1`);
 let inputWord = document.querySelector(`#letter1`);
 let result = document.querySelector(`#result`);
@@ -73,6 +77,8 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
   } else {
     console.log("Incorrect!");
     wrongLetter.innerHTML += letter;
+    wrongLetterArray.push(letter);
+    console.log(wrongLetterArray);
   }
 });
 /////////////////////////output lines with amount of letters Luka //////////////////
@@ -86,7 +92,6 @@ paragraph.innerHTML = `${hiddenWord}`;
 
 // BONNIE
 
-
 let svgGround = document.getElementById("ground");
 let svgGhead = document.getElementById("head");
 let svgBody = document.getElementById("body");
@@ -95,17 +100,19 @@ let svgLegs = document.getElementById("legs");
 let svgScaffold = document.getElementById("scaffold");
 let btn = document.querySelector("button");
 
-let svgParts = [svgGround, svgGhead, svgScaffold, svgLegs, svgArms, svgBody]; 
+let svgParts = [svgGround, svgGhead, svgScaffold, svgLegs, svgArms, svgBody];
 
 let index = -1;
 
 svgParts.forEach((part, i) => {
- if (i !== index) {
-   part.style.display = "none";
- }
+  if (i !== index) {
+    part.style.display = "none";
+  }
 });
 
 btn.addEventListener("click", () => {
-index = (index + 1); 
-svgParts[index].style.display = "block";
-})
+  index = index + 1;
+  svgParts[index].style.display = "block";
+});
+
+wrongLetterArray[i] > 5;
