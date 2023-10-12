@@ -54,6 +54,8 @@ console.log(randomWordChosen);
 const randomWordChosenArray = randomWordChosen.split(``);
 console.log(randomWordChosenArray);
 ///////////////////////////check letter Luka and output letter ////////////////////////////////
+let wrongLetterArray = [];
+let rightLetterArray = [];
 let inputLetter = document.querySelector(`#letter1`);
 let inputWord = document.querySelector(`#letter1`);
 let result = document.querySelector(`#result`);
@@ -66,14 +68,21 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
     for (let i = 0; i < randomWordChosenArray.length; i++) {
       if (letter === randomWordChosenArray[i]) {
         console.log("Correct!");
-        rightLetter.innerHTML += [i, letter];
+        rightLetter.innerHTML += [i, letter, `-`];
+        rightLetterArray.push(letter);
+        console.log(rightLetterArray);
       }
       console.log(randomWordChosenArray[i]);
     }
   } else {
     console.log("Incorrect!");
     wrongLetter.innerHTML += letter;
+    index = index + 1;
+    svgParts[index].style.display = "block";
+    wrongLetterArray.push(letter);
+    console.log(wrongLetterArray);
   }
+  inputLetter.value = "";
 });
 /////////////////////////output lines with amount of letters Luka //////////////////
 let hiddenWord = Array(randomWordChosenArray.length).fill(`_`);
@@ -86,26 +95,33 @@ paragraph.innerHTML = `${hiddenWord}`;
 
 // BONNIE
 
-
 let svgGround = document.getElementById("ground");
-let svgGhead = document.getElementById("head");
+let svgHead = document.getElementById("head");
 let svgBody = document.getElementById("body");
 let svgArms = document.getElementById("arms");
 let svgLegs = document.getElementById("legs");
 let svgScaffold = document.getElementById("scaffold");
 let btn = document.querySelector("button");
 
-let svgParts = [svgGround, svgGhead, svgScaffold, svgLegs, svgArms, svgBody]; 
+let svgParts = [svgGround, svgHead, svgScaffold, svgLegs, svgArms, svgBody];
 
 let index = -1;
 
 svgParts.forEach((part, i) => {
- if (i !== index) {
-   part.style.display = "none";
- }
+  if (i !== index) {
+    part.style.display = "none";
+  }
 });
 
-btn.addEventListener("click", () => {
-index = (index + 1); 
-svgParts[index].style.display = "block";
-})
+function gameOver() {
+  if (wrongLetterArray > 5) {
+    alert("Game Over!");
+    // location.reload();
+  }
+  gameOver();
+}
+
+// inputLetter.addEventListener("input", () => {
+//   index = index + 1;
+//   svgParts[index].style.display = "block";
+// });
