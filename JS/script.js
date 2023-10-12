@@ -65,11 +65,13 @@ let hiddenWord = Array(randomWordChosenArray.length).fill(`_`);
 let paragraph = document.querySelector(`#outputLines`);
 paragraph.innerHTML = `${hiddenWord}`;
 function gameOver() {
-  if (wrongLetterArray.length > 6) {
-    alert(
-      `Game Over! ${randomWordChosen}` + " Press OK if you want to play again"
-    );
-    location.reload();
+  if (wrongLetterArray.length > 5) {
+    setTimeout(() => {
+      alert(
+        `Game Over! ${randomWordChosen}` + " Press OK if you want to play again"
+      );
+      location.reload();
+    }, 200);
   }
 }
 function youWon() {
