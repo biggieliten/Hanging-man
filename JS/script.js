@@ -8,7 +8,8 @@ const timer = setInterval(function () {
 
   if (seconds < 0) {
     clearInterval(timer);
-    alert("Tiden är ute!");
+    alert("Time is out!! - Press: -OK- to play again");
+    location.reload();
   } else if (seconds === 0) {
     countdown.innerHTML = "0" + minutes + ":" + seconds + "0";
   } else if (seconds < 10) {
@@ -55,11 +56,10 @@ const randomWordChosenArray = randomWordChosen.split(``);
 console.log(randomWordChosenArray);
 ///////////////////////////check letter Luka and output letter ////////////////////////////////
 let wrongLetterArray = [];
-let rightLetterArray = [];
+let guessedLetters = [];
 let inputLetter = document.querySelector(`#letter1`);
 let inputWord = document.querySelector(`#letter1`);
 let result = document.querySelector(`#result`);
-// let rightLetter = document.querySelector(`#rightLetter`);
 let wrongLetter = document.querySelector(`#letterLog`);
 let hiddenWord = Array(randomWordChosenArray.length).fill(`_`);
 let paragraph = document.querySelector(`#outputLines`);
@@ -68,44 +68,50 @@ function gameOver() {
   if (wrongLetterArray.length > 5) {
     setTimeout(() => {
       alert(
-        `Game Over! ${randomWordChosen}` + " Press OK if you want to play again"
+        `Game Over!  The word you are looking for is: ${randomWordChosen}` +
+          "  " +
+          " Press: -OK- if you want to play again"
       );
       location.reload();
     }, 200);
   }
 }
 function youWon() {
-  if (rightLetterArray.length === randomWordChosenArray.length) {
-    alert("WOW You Won " + " Press OK if you want to play again");
-    location.reload();
-  } else {
-    return;
+  if (hiddenWord.toString() === randomWordChosenArray.toString()) {
+    setTimeout(() => {
+      alert("WOW You Won !!! " + " Press: -OK- if you want to play again");
+      location.reload();
+    }, 200);
   }
 }
 
 inputLetter.addEventListener(`input`, (checkLetter) => {
   let letter = checkLetter.target.value.toLowerCase();
-  if (randomWordChosenArray.includes(letter)) {
-    for (let i = 0; i < randomWordChosenArray.length; i++) {
-      if (letter === randomWordChosenArray[i]) {
-        console.log("Correct!");
-        hiddenWord[i] = letter; // Replace the underscore with the correct letter
-        paragraph.innerHTML = hiddenWord.join(" ");
-        youWon();
-        // rightLetter.innerHTML += [i, letter, `-`];
-        // rightLetterArray.push(letter);
-        // console.log(rightLetterArray);
+
+  if (!guessedLetters.includes(letter)) {
+    guessedLetters.push(letter);
+
+    if (randomWordChosenArray.includes(letter)) {
+      for (let i = 0; i < randomWordChosenArray.length; i++) {
+        if (letter === randomWordChosenArray[i]) {
+          console.log("Correct!");
+          hiddenWord[i] = letter; // Replace the underscore with the correct letter
+          paragraph.innerHTML = hiddenWord.join(" ");
+          youWon();
+        }
+        console.log(randomWordChosenArray[i]);
       }
-      console.log(randomWordChosenArray[i]);
+    } else {
+      console.log("Incorrect!");
+      wrongLetter.innerHTML += letter;
+      index = index + 1;
+      svgParts[index].style.display = "block";
+      wrongLetterArray.push(letter);
+      console.log(wrongLetterArray);
+      gameOver();
     }
-  } else {
-    console.log("Incorrect!");
-    wrongLetter.innerHTML += letter;
-    index = index + 1;
-    svgParts[index].style.display = "block";
-    wrongLetterArray.push(letter);
-    console.log(wrongLetterArray);
-    gameOver();
+  } else if (guessedLetters.includes(letter)) {
+    alert(letter + " <- already guessed");
   }
   inputLetter.value = "";
 });
@@ -115,7 +121,7 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
 // compare string.length to length of the word
 // print out _ form the value from string.length
 
-// BONNIE
+/////////////////////// BONNIE SVG ///////////////////////////////
 
 let svgGround = document.getElementById("ground");
 let svgHead = document.getElementById("head");
@@ -124,17 +130,8 @@ let svgArms = document.getElementById("arms");
 let svgLegs = document.getElementById("legs");
 let svgScaffold = document.getElementById("scaffold");
 let btn = document.querySelector("button");
-let gameOverSvg = document.querySelector(`#Layer_1`);
 
-let svgParts = [
-  svgGround,
-  svgHead,
-  svgScaffold,
-  svgLegs,
-  svgArms,
-  svgBody,
-  gameOverSvg,
-];
+let svgParts = [svgGround, svgHead, svgScaffold, svgLegs, svgArms, svgBody];
 
 let index = -1;
 
@@ -143,8 +140,3 @@ svgParts.forEach((part, i) => {
     part.style.display = "none";
   }
 });
-
-// inputLetter.addEventListener("input", () => {
-//   index = index + 1;
-//   svgParts[index].style.display = "block";
-// });
