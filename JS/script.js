@@ -113,6 +113,7 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
   } else if (guessedLetters.includes(letter)) {
     alert(letter + " <- already guessed");
   }
+
   inputLetter.value = "";
 });
 /////////////////////////output lines with amount of letters Luka //////////////////
