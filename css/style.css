@@ -36,8 +36,8 @@ main {
   grid-area: svg;
 }
 .imgBackground {
-  height: 100vh;
-  width: 100vw;
+  height: 90vh;
+  width: 100vh;
   background-image: url("../images/winXP.webp"); /* Set the background image */
   background-size: cover; /* Cover the entire box */
   background-position: center; /* Center the image */
