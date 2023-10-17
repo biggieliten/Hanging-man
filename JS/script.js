@@ -28,41 +28,79 @@ const timer = setInterval(function () {
   // Decrease the total time by one second.
   totalTime--;
 }, 1000);
-console.log(totalTime);
+console.log("Nice Try");
 /////////////////////Luka Random Generator ///////////////////////////////
 // word database Array //
 let randomWord = [
-  "apple",
-  "banana",
-  "cherry",
-  "grape",
-  "orange",
-  "pear",
-  "pineapple",
-  "strawberry",
-  "watermelon",
-  "kiwi",
-  "dog",
-  "cat",
-  "elephant",
-  "orca",
-  "leon",
-  "syntax",
-  "javascript",
-  "html",
-  "css",
-  "python",
-  "java",
-  "werewolf",
+  // Animals
+  "Giraffe",
+  "Platypus",
+  "Rhinoceros",
+  "Chimpanzee",
+  "Alligator",
+  "Porcupine",
+  "Kangaroo",
+
+  // Countries
+  "Australia",
+  "Madagascar",
+  "Switzerland",
+  "Kazakhstan",
+  "Venezuela",
+  "Philippines",
+  "Bangladesh",
+
+  // Fruits
+  "Blueberry",
+  "Raspberry",
+  "Pomegranate",
+  "Blackberry",
+  "Watermelon",
+  "Strawberry",
+  "Pineapple",
+
+  // Tech Terms
+  "Blockchain",
+  "Algorithm",
+  "Database",
+  "Encryption",
+  "Interface",
+  "Javascript",
+  "Framework",
+
+  // Space
+  "Constellation",
+  "Astronaut",
+  "Meteorite",
+  "Satellite",
+  "Nebula",
+  "Universe",
+  "Galaxy",
+
+  // Fantasy
+  "Dragon",
+  "Unicorn",
+  "Werewolf",
+  "Sorcerer",
+  "Vampire",
+  "Minotaur",
+  "Phoenix",
+
+  // Historical Figures
+  "Cleopatra",
+  "Napoleon",
+  "Leonardo",
+  "Shakespeare",
+  "Galileo",
+  "Aristotle",
+  "Genghis",
 ];
 // takes a random word from randomWord array and spits it in single indexes in a new array randomWordChosenArray //
 function randomWordGenerator(randomWord) {
   return randomWord[Math.floor(Math.random() * randomWord.length)];
 }
 const randomWordChosen = randomWordGenerator(randomWord);
-console.log(randomWordChosen);
 const randomWordChosenArray = randomWordChosen.split(``);
-console.log(randomWordChosenArray);
 ///////////////////////////check letter Luka and output letter ////////////////////////////////
 // Array to store the letters that the user has guessed incorrectly upp to max 5 wrong guesses
 let wrongLetterArray = [];
@@ -117,7 +155,6 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
       for (let i = 0; i < randomWordChosenArray.length; i++) {
         // If the guessed letter matches a letter in the 'randomWordChosenArray'.
         if (letter === randomWordChosenArray[i]) {
-          console.log("Correct!");
           // Replace the underscore in the 'hiddenWord' array with the correct letter.
           hiddenWord[i] = letter;
           // Update the displayed word with the correctly guessed letters.
@@ -125,11 +162,9 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
           // Calls on the function to Check if the user has won.
           youWon();
         }
-        console.log(randomWordChosenArray[i]);
       }
       // If the guessed letter is not in the 'randomWordChosenArray'.
     } else {
-      console.log("Incorrect!");
       // Display the incorrect letter.
       wrongLetter.innerHTML += letter;
       // Increment the index for the SVG parts (for hangman visualization).
@@ -138,7 +173,7 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
       svgParts[index].style.display = "block";
       // Add the incorrect letter to the 'wrongLetterArray'.
       wrongLetterArray.push(letter);
-      console.log(wrongLetterArray);
+
       // Calls on the function to Check if the game is over.
       gameOver();
     }
