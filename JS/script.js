@@ -29,79 +29,85 @@ const timer = setInterval(function () {
   totalTime--;
 }, 1000);
 console.log("Nice Try");
-/////////////////////Luka Random Generator ///////////////////////////////
+
 // word database Array //
 let randomWord = [
+  //Names
+  "luka",
+  "filip",
+  "bonnie",
+  "andreas",
   // Animals
-  "Giraffe",
-  "Platypus",
-  "Rhinoceros",
-  "Chimpanzee",
-  "Alligator",
-  "Porcupine",
-  "Kangaroo",
+  "giraffe",
+  "platypus",
+  "rhinoceros",
+  "chimpanzee",
+  "alligator",
+  "porcupine",
+  "kangaroo",
 
   // Countries
-  "Australia",
-  "Madagascar",
-  "Switzerland",
-  "Kazakhstan",
-  "Venezuela",
-  "Philippines",
-  "Bangladesh",
+  "australia",
+  "madagascar",
+  "switzerland",
+  "kazakhstan",
+  "venezuela",
+  "philippines",
+  "bangladesh",
 
   // Fruits
-  "Blueberry",
-  "Raspberry",
-  "Pomegranate",
-  "Blackberry",
-  "Watermelon",
-  "Strawberry",
-  "Pineapple",
+  "blueberry",
+  "raspberry",
+  "pomegranate",
+  "blackberry",
+  "watermelon",
+  "strawberry",
+  "pineapple",
 
   // Tech Terms
-  "Blockchain",
-  "Algorithm",
-  "Database",
-  "Encryption",
-  "Interface",
-  "Javascript",
-  "Framework",
+  "blockchain",
+  "algorithm",
+  "database",
+  "encryption",
+  "interface",
+  "javascript",
+  "framework",
 
   // Space
-  "Constellation",
-  "Astronaut",
-  "Meteorite",
-  "Satellite",
-  "Nebula",
-  "Universe",
-  "Galaxy",
+  "constellation",
+  "astronaut",
+  "meteorite",
+  "satellite",
+  "nebula",
+  "universe",
+  "galaxy",
 
   // Fantasy
-  "Dragon",
-  "Unicorn",
-  "Werewolf",
-  "Sorcerer",
-  "Vampire",
-  "Minotaur",
-  "Phoenix",
+  "dragon",
+  "unicorn",
+  "werewolf",
+  "sorcerer",
+  "vampire",
+  "minotaur",
+  "phoenix",
 
   // Historical Figures
-  "Cleopatra",
-  "Napoleon",
-  "Leonardo",
-  "Shakespeare",
-  "Galileo",
-  "Aristotle",
-  "Genghis",
+  "cleopatra",
+  "napoleon",
+  "leonardo",
+  "shakespeare",
+  "galileo",
+  "aristotle",
+  "genghis",
 ];
-// takes a random word from randomWord array and spits it in single indexes in a new array randomWordChosenArray //
+
+// takes a random word from randomWord array and spits it in single indexes in a new array randomWordChoseSplit //
 function randomWordGenerator(randomWord) {
   return randomWord[Math.floor(Math.random() * randomWord.length)];
 }
 const randomWordChosen = randomWordGenerator(randomWord);
-const randomWordChosenArray = randomWordChosen.split(``);
-///////////////////////////check letter Luka and output letter ////////////////////////////////
+const randomWordChoseSplit = randomWordChosen.split(``);
+
 // Array to store the letters that the user has guessed incorrectly upp to max 5 wrong guesses
 let wrongLetterArray = [];
 // Array to store all the letters that the user has guessed.
@@ -110,10 +116,12 @@ let inputLetter = document.querySelector(`#letter1`);
 //let inputWord = document.querySelector(`#letter1`); // potential word guess can be implemented
 let result = document.querySelector(`#result`);
 let wrongLetter = document.querySelector(`#letterLog`);
-let hiddenWord = Array(randomWordChosenArray.length).fill(`_`);
+let hiddenWord = Array(randomWordChoseSplit.length).fill(`_`);
 let paragraph = document.querySelector(`#outputLines`);
+
 // Display the underscores in the paragraph element.
 paragraph.innerHTML = `${hiddenWord}`;
+
 // Function to check if the game is over.
 function gameOver() {
   // If the user has guessed more than 5 letters incorrectly.
@@ -130,31 +138,35 @@ function gameOver() {
     }, 200);
   }
 }
+
 // Function to check if the user has won the game.
 function youWon() {
-  // Compare the current state of 'hiddenWord' with the 'randomWordChosenArray'.
+  // Compare the current state of 'hiddenWord' with the 'randomWordChoseSplit'.
   // If they are the same, it means the user has guessed the entire word correctly.
-  if (hiddenWord.toString() === randomWordChosenArray.toString()) {
+  if (hiddenWord.toString() === randomWordChoseSplit.toString()) {
     setTimeout(() => {
       alert("WOW You Won !!! " + " Press: -OK- if you want to play again");
       location.reload();
     }, 200);
   }
 }
+
 // Add an event listener to the 'inputLetter' element that triggers when the user provides input.
 inputLetter.addEventListener(`input`, (checkLetter) => {
   // Convert the user's input to lowercase for consistency.
+
   let letter = checkLetter.target.value.toLowerCase();
   // Check if the letter has not been guessed before.
+
   if (!guessedLetters.includes(letter)) {
     // Add the letter to the 'guessedLetters' array.
     guessedLetters.push(letter);
-    // Check if the guessed letter is in the 'randomWordChosenArray'.
-    if (randomWordChosenArray.includes(letter)) {
-      // Loop through each letter in the 'randomWordChosenArray'.
-      for (let i = 0; i < randomWordChosenArray.length; i++) {
-        // If the guessed letter matches a letter in the 'randomWordChosenArray'.
-        if (letter === randomWordChosenArray[i]) {
+    // Check if the guessed letter is in the 'randomWordChoseSplit'.
+    if (randomWordChoseSplit.includes(letter)) {
+      // Loop through each letter in the 'randomWordChoseSplit'.
+      for (let i = 0; i < randomWordChoseSplit.length; i++) {
+        // If the guessed letter matches a letter in the 'randomWordChoseSplit'.
+        if (letter === randomWordChoseSplit[i]) {
           // Replace the underscore in the 'hiddenWord' array with the correct letter.
           hiddenWord[i] = letter;
           // Update the displayed word with the correctly guessed letters.
@@ -163,7 +175,7 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
           youWon();
         }
       }
-      // If the guessed letter is not in the 'randomWordChosenArray'.
+      // If the guessed letter is not in the 'randomWordChoseSplit'.
     } else {
       // Display the incorrect letter.
       wrongLetter.innerHTML += letter;
@@ -184,13 +196,7 @@ inputLetter.addEventListener(`input`, (checkLetter) => {
   // Clear the input field after processing the user's guess.
   inputLetter.value = "";
 });
-/////////////////////////output lines with amount of letters Luka //////////////////
 
-//get the length of the word from using sting.length
-// compare string.length to length of the word
-// print out _ form the value from string.length
-
-/////////////////////// BONNIE SVG ///////////////////////////////
 // Get the SVG elements for each part of the hangman drawing.
 let svgGround = document.getElementById("ground");
 let svgHead = document.getElementById("head");
@@ -198,12 +204,12 @@ let svgBody = document.getElementById("body");
 let svgArms = document.getElementById("arms");
 let svgLegs = document.getElementById("legs");
 let svgScaffold = document.getElementById("scaffold");
-// Get the button element.
-let btn = document.querySelector("button");
+
 // Create an array of all the SVG parts in the order they should be displayed.
 let svgParts = [svgGround, svgHead, svgScaffold, svgLegs, svgArms, svgBody];
 // Initialize an index variable to -1. This will be used to control which SVG part is displayed.
 let index = -1;
+
 // Loop through each SVG part.
 svgParts.forEach((part, i) => {
   // If the current SVG part's index does not match the 'index' variable, hide it.
