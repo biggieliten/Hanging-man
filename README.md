@@ -1,4 +1,7 @@
 # hanging-man
+this project is made by : Luka, Bonnie, Filip
+the Team Diamond Rangers 
+
 
 The final Verions 1.1 of the game ready to releas on Steam 
 Releas Date is set for oktober 31.
