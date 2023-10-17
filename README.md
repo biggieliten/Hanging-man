@@ -1,4 +1,9 @@
 # hanging-man
+
+The final Verions 1.1 of the game ready to releas on Steam 
+Releas Date is set for oktober 31.
+
+
 REGLER:
 Ifall man fastnar i en uppgift be om hjälp.
 
